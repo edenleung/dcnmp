@@ -4,6 +4,7 @@ services:
     image: nginx:${NGINX_VERSION}
     ports:
       - ${HTTP_HOST}:80
+      - 9502:9502
       - ${HTTPS_HOST}:443
     volumes:
       - ${SOURCE_DIR}:/var/www/html/:rw
