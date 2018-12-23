@@ -27,6 +27,20 @@ services:
     restart: always
     networks:
       - default
+  php56:
+    build: 
+      context: .
+      args:
+        PHP_VERSION: ${PHP56_VERSION}
+    volumes:
+      - ${SOURCE_DIR}:/var/www/html/:rw
+      - ${PHP56_PHP_CONFIG_FILE}:/usr/local/etc/php/php.ini:ro
+      - ${PHP56_FPM_CONFIG_FILE}:/usr/local/etc/php-fpm.d/www.conf:rw
+    cap_add:
+      - SYS_PTRACE
+    restart: always
+    networks:
+      - default
   mysql56:
     image: mysql:5.6
     ports:
