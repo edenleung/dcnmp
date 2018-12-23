@@ -31,6 +31,8 @@ services:
     image: mysql:5.6
     ports:
       - ${MYSQL56_HOST_PORT}:3306
+    volumes:
+      - ${MYSQL56_DATA_DIR}:/var/lib/mysql:rw
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_PASSWORD}"
   mysql57:
@@ -39,3 +41,5 @@ services:
       - ${MYSQL57_HOST_PORT}:3306
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_PASSWORD}"
+    volumes:
+      - ${MYSQL57_DATA_DIR}:/var/lib/mysql:rw
