@@ -12,6 +12,6 @@ RUN if [ ${PHP_SWOOLE} != false ]; then \
     && phpize \
     && ./configure \
     && make clean && make && make install \
-    && echo "extension=swoole.so" >> /usr/local/etc/php/php.ini \
-    && php -m | grep swoole \
+    && docker-php-ext-enable swoole \
+    && rm -rf swoole-src \
 ;fi
