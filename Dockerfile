@@ -15,3 +15,16 @@ RUN if [ ${PHP_SWOOLE} != false ]; then \
     && docker-php-ext-enable swoole \
     && rm -rf swoole-src \
 ;fi
+
+ARG PHP_XDEBUG=false
+RUN if [ ${PHP_XDEBUG} != false ]; then \
+    curl -O https://github.com/xdebug/xdebug/archive/${PHP_XDEBUG}.tar.gz -L \
+    && tar -zxvf ${PHP_XDEBUG}.tar.gz \
+    && mv xdebug* xdebug \
+    && cd xdebug \
+    && phpize \
+    && ./configure \
+    && make clean && make && make install \
+    && docker-php-ext-enable xdebug \
+    && rm -rf xdebug \
+;fi
