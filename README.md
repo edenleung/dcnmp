@@ -19,3 +19,15 @@ nginx:
 ~~~
 $ docker-compose up
 ~~~
+
+### 指定PHP版本
+修改 ```conf/conf.d/你的项目.conf```
+~~~
+location ~ \.php$ {
+  fastcgi_pass   php56:9000;
+
+  # php7.3
+  # fastcgi_pass php73:9000;
+
+}
+~~~
