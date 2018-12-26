@@ -1,7 +1,8 @@
 # xiaodi-docker-lnmp
 #### Docker开发环境
 ##### Docker [必须安装](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe)
-##### Docker-compose [必须安装](https://docs.docker.com/compose/install/) 
+##### docker-compose 命令执行失败 请安装以下工具
+######  Docker-compose [可选安装](https://docs.docker.com/compose/install/) 
 
 ### 创建项目
 1. 在workspace目录 创建项目
