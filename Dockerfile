@@ -47,6 +47,5 @@ RUN docker-php-ext-enable gd
 RUN docker-php-ext-install -j$(nproc) pdo_mysql \
     && docker-php-ext-install mysqli \
     && docker-php-ext-install pdo
-RUN docker-php-ext-enable pdo_mysql
-RUN docker-php-ext-enable mysqli
-RUN docker-php-ext-enable pdo
+
+RUN docker-php-ext-install pcntl
