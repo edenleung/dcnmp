@@ -31,3 +31,14 @@ location ~ \.php$ {
 
 }
 ~~~
+
+### 数据库连接
+~~~
+mysqli_connect('容器名称', 'root', 1234, 'database')
+~~~
+#### 例子
+##### 连接mysql5.6: ```mysqli_connect('mysql56', 'root', 1234, 'database')```
+##### 连接mysql5.7: ```mysqli_connect('mysql57', 'root', 1234, 'database')```
+
+### 数据库工具连接
+直接使用当前映射的端口访问内部
