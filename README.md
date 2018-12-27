@@ -4,6 +4,13 @@
 ##### docker-compose 命令执行失败 请安装以下工具
 ######  Docker-compose [可选安装](https://docs.docker.com/compose/install/) 
 
+##### Docker 加速
+##### 在桌面右下角状态栏中右键 docker 图标，修改在 Docker Daemon 标签页中的 json ，把下面的地址:
+"registry-mirrors"
+~~~
+http://f1361db2.m.daocloud.io
+~~~
+
 ### 创建项目
 1. 在workspace目录 创建项目
 2. 配置虚拟主机conf/conf.d/你的项目.conf, listen 添加你自定义的端口 参考tp5.conf
