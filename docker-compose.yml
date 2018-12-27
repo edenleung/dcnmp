@@ -58,3 +58,10 @@ services:
       MYSQL_ROOT_PASSWORD: "${MYSQL_PASSWORD}"
     volumes:
       - ${MYSQL57_DATA_DIR}:/var/lib/mysql:rw
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - ./data/redis:/data
+    command: redis-server --appendonly yes

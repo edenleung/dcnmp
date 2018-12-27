@@ -49,3 +49,4 @@ RUN docker-php-ext-install -j$(nproc) pdo_mysql \
     && docker-php-ext-install pdo
 
 RUN docker-php-ext-install pcntl
+RUN pecl install redis && docker-php-ext-enable redis
