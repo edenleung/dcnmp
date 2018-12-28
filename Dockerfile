@@ -1,37 +1,28 @@
 ARG PHP_VERSION
 FROM php:${PHP_VERSION}-fpm
 
+ARG PHP_SWOOLE=false
+ARG PHP_XDEBUG=false
+ARG PHP_REDIS=false
+
+COPY ./sources.list /etc/apt/sources.list.tmp
+RUN mv /etc/apt/sources.list.tmp /etc/apt/sources.list
 RUN apt-get update && apt-get install -y \
 		libfreetype6-dev \
 		libjpeg62-turbo-dev \
 		libmcrypt-dev \
 		libpng-dev
 
-ARG PHP_SWOOLE=false
-
 RUN if [ ${PHP_SWOOLE} != false ]; then \
-    curl -O https://github.com/swoole/swoole-src/archive/v${PHP_SWOOLE}.tar.gz -L \
-    && tar -zxvf v${PHP_SWOOLE}.tar.gz \
-    && mv swoole-src* swoole-src \
-    && cd swoole-src \
-    && phpize \
-    && ./configure \
-    && make clean && make && make install \
+    curl -O http://pecl.php.net/get/swoole-${PHP_SWOOLE}.tgz -L \
+    && pecl install swoole-${PHP_SWOOLE}.tgz \
     && docker-php-ext-enable swoole \
-    && rm -rf swoole-src \
 ;fi
 
-ARG PHP_XDEBUG=false
 RUN if [ ${PHP_XDEBUG} != false ]; then \
-    curl -O https://github.com/xdebug/xdebug/archive/${PHP_XDEBUG}.tar.gz -L \
-    && tar -zxvf ${PHP_XDEBUG}.tar.gz \
-    && mv xdebug* xdebug \
-    && cd xdebug \
-    && phpize \
-    && ./configure \
-    && make clean && make && make install \
+    curl -O http://pecl.php.net/get/xdebug-${PHP_XDEBUG}.tgz -L \
+    && pecl install xdebug-${PHP_XDEBUG}.tgz \
     && docker-php-ext-enable xdebug \
-    && rm -rf xdebug \
 ;fi
 
 # GD
@@ -41,12 +32,16 @@ RUN docker-php-ext-configure gd \
     --with-png-dir=/usr/include/ \
     --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
-RUN docker-php-ext-enable gd
 
 # MYSQL
 RUN docker-php-ext-install -j$(nproc) pdo_mysql \
-    && docker-php-ext-install mysqli \
-    && docker-php-ext-install pdo
+    && docker-php-ext-install mysqli
 
 RUN docker-php-ext-install pcntl
-RUN pecl install redis && docker-php-ext-enable redis
+
+# REDIS
+RUN if [ ${PHP_REDIS} != false ]; then \
+    curl -O http://pecl.php.net/get/redis-${PHP_REDIS}.tgz -L \
+    && pecl install redis-${PHP_REDIS}.tgz \
+    && docker-php-ext-enable redis \
+;fi
