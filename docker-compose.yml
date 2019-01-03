@@ -49,7 +49,7 @@ services:
       - ${MYSQL56_HOST_PORT}:3306
     volumes:
       - ${MYSQL56_DATA_DIR}:/var/lib/mysql:rw
-      - ./conf/mysql/my.cnf:/etc/mysql/my.cnf:ro
+      - ${MYSQL_CONFIG_FILE}:/etc/mysql/my.cnf:ro
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_PASSWORD}"
   redis:
