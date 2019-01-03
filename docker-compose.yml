@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   nginx:
     image: nginx:${NGINX_VERSION}
@@ -12,7 +12,7 @@ services:
       - ${NGINX_LOG_DIR}:/var/log/nginx/:rw
     restart: always
   php71:
-    build: 
+    build:
       context: .
       args:
         PHP_VERSION: ${PHP71_VERSION}
@@ -30,7 +30,7 @@ services:
     networks:
       - default
   php56:
-    build: 
+    build:
       context: .
       args:
         PHP_VERSION: ${PHP56_VERSION}
@@ -49,6 +49,7 @@ services:
       - ${MYSQL56_HOST_PORT}:3306
     volumes:
       - ${MYSQL56_DATA_DIR}:/var/lib/mysql:rw
+      - ./conf/mysql/my.cnf:/etc/mysql/my.cnf:ro
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_PASSWORD}"
   redis:
