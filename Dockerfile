@@ -11,6 +11,8 @@ RUN apt-get update && apt-get install -y \
         unixodbc-dev \
         gcc g++ make autoconf libc-dev pkg-config
 
+RUN docker-php-ext-install bcmath exif intl pcntl pdo pdo_mysql pdo_pgsql zip
+
 # Swoole
 ARG PHP_SWOOLE=false
 RUN if [ ${PHP_SWOOLE} != false ]; then \
@@ -34,12 +36,6 @@ RUN docker-php-ext-configure gd \
     --with-png-dir=/usr/include/ \
     --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
-
-# MYSQL
-RUN docker-php-ext-install -j$(nproc) pdo_mysql \
-    && docker-php-ext-install mysqli
-
-RUN docker-php-ext-install pcntl
 
 # REDIS
 ARG PHP_REDIS=false
