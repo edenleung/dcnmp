@@ -13,34 +13,34 @@ RUN apt-get update && apt-get install -y \
 
 RUN docker-php-ext-install bcmath pcntl pdo_mysql zip curl mcrypt gd
 
-# Swoole
-# ARG PHP_SWOOLE=false
-# RUN if [ ${PHP_SWOOLE} != false ]; then \
-#     curl -O http://pecl.php.net/get/swoole-${PHP_SWOOLE}.tgz -L \
-#     && pecl install swoole-${PHP_SWOOLE}.tgz \
-#     && docker-php-ext-enable swoole \
-# ;fi
+Swoole
+ARG PHP_SWOOLE=false
+RUN if [ ${PHP_SWOOLE} != false ]; then \
+    curl -O http://pecl.php.net/get/swoole-${PHP_SWOOLE}.tgz -L \
+    && pecl install swoole-${PHP_SWOOLE}.tgz \
+    && docker-php-ext-enable swoole \
+;fi
 
-# # XDEBUG
-# ARG PHP_XDEBUG=false
-# RUN if [ ${PHP_XDEBUG} != false ]; then \
-#     curl -O http://pecl.php.net/get/xdebug-${PHP_XDEBUG}.tgz -L \
-#     && pecl install xdebug-${PHP_XDEBUG}.tgz \
-#     && docker-php-ext-enable xdebug \
-# ;fi
+# XDEBUG
+ARG PHP_XDEBUG=false
+RUN if [ ${PHP_XDEBUG} != false ]; then \
+    curl -O http://pecl.php.net/get/xdebug-${PHP_XDEBUG}.tgz -L \
+    && pecl install xdebug-${PHP_XDEBUG}.tgz \
+    && docker-php-ext-enable xdebug \
+;fi
 
-# # REDIS
-# ARG PHP_REDIS=false
-# RUN if [ ${PHP_REDIS} != false ]; then \
-#     curl -O http://pecl.php.net/get/redis-${PHP_REDIS}.tgz -L \
-#     && pecl install redis-${PHP_REDIS}.tgz \
-#     && docker-php-ext-enable redis \
-# ;fi
+# REDIS
+ARG PHP_REDIS=false
+RUN if [ ${PHP_REDIS} != false ]; then \
+    curl -O http://pecl.php.net/get/redis-${PHP_REDIS}.tgz -L \
+    && pecl install redis-${PHP_REDIS}.tgz \
+    && docker-php-ext-enable redis \
+;fi
 
-# # PDO_SQLSRV
-# ARG PHP_SQLSRV=false
-# RUN if [ ${PHP_SQLSRV} != false ]; then \
-#     curl -O http://pecl.php.net/get/pdo_sqlsrv-${PHP_SQLSRV}.tgz -L \
-#     && pecl install pdo_sqlsrv-${PHP_SQLSRV}.tgz \
-#     && docker-php-ext-enable pdo_sqlsrv \
-# ;fi
+# PDO_SQLSRV
+ARG PHP_SQLSRV=false
+RUN if [ ${PHP_SQLSRV} != false ]; then \
+    curl -O http://pecl.php.net/get/pdo_sqlsrv-${PHP_SQLSRV}.tgz -L \
+    && pecl install pdo_sqlsrv-${PHP_SQLSRV}.tgz \
+    && docker-php-ext-enable pdo_sqlsrv \
+;fi
