@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
         unixodbc-dev \
         gcc g++ make autoconf libc-dev pkg-config
 
-RUN docker-php-ext-install bcmath exif intl pcntl pdo pdo_mysql pdo_pgsql zip
+RUN docker-php-ext-install bcmath pcntl pdo_mysql zip
 
 # Swoole
 ARG PHP_SWOOLE=false
