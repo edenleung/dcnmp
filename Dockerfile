@@ -9,11 +9,18 @@ RUN apt-get update && apt-get install -y \
 		libmcrypt-dev \
 		libpng-dev \
         unixodbc-dev \
-        gcc g++ make autoconf libc-dev pkg-config libcurl3-dev
+        gcc g++ make autoconf libc-dev pkg-config libcurl3-dev libwebp-dev libxpm-dev
 
-RUN docker-php-ext-install bcmath pcntl pdo_mysql zip curl mcrypt gd
+RUN docker-php-ext-install bcmath pcntl pdo_mysql zip curl mcrypt
 
-Swoole
+#GD
+RUN docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir \
+    --with-png-dir --with-zlib-dir --with-xpm-dir --with-freetype-dir \
+    --enable-gd-native-ttf
+
+RUN docker-php-ext-install gd
+
+#Swoole
 ARG PHP_SWOOLE=false
 RUN if [ ${PHP_SWOOLE} != false ]; then \
     curl -O http://pecl.php.net/get/swoole-${PHP_SWOOLE}.tgz -L \
