@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
 		libmcrypt-dev \
 		libpng-dev \
         unixodbc-dev \
-        gcc g++ make autoconf libc-dev pkg-config libcurl3-dev libwebp-dev libxpm-dev git
+        gcc g++ make autoconf libc-dev pkg-config libcurl3-dev libwebp-dev libxpm-dev git zip unzip
 
 RUN docker-php-ext-install bcmath pcntl pdo_mysql zip curl mcrypt
 
