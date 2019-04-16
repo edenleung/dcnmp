@@ -5,7 +5,6 @@ services:
     ports:
       - ${HTTP_HOST}:80
       - ${HTTPS_HOST}:443
-      - 9501:9501
     volumes:
       - ${SOURCE_DIR}:/var/www/html/:rw
       - ${NGINX_CONFD_DIR}:/etc/nginx/conf.d/:rw
