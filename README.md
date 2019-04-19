@@ -12,7 +12,7 @@ http://f1361db2.m.daocloud.io
 ### 创建项目
 1. 在workspace目录 创建项目
 2. 配置虚拟主机```conf/conf.d/project_name.conf```, listen 添加你自定义的端口 参考```tp5.conf.examplte```
-3. 配置启动端口映射 docker-compose.yml 
+3. 自定义配置启动端口映射 docker-compose.yml （可选）
 注！ ```9503:9503``` 指 ```本地端口:容器端口```
 ~~~
 nginx:
