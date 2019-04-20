@@ -57,3 +57,5 @@ RUN if [ ${PHP_SQLSRV} != false ]; then \
     && pecl install pdo_sqlsrv-${PHP_SQLSRV}.tgz \
     && docker-php-ext-enable pdo_sqlsrv \
 ;fi
+
+WORKDIR /var/www/html
