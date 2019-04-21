@@ -51,11 +51,11 @@ RUN if [ ${PHP_REDIS} != false ]; then \
 ;fi
 
 # PDO_SQLSRV
-ARG PHP_SQLSRV=false
-RUN if [ ${PHP_SQLSRV} != false ]; then \
-    curl -O http://pecl.php.net/get/pdo_sqlsrv-${PHP_SQLSRV}.tgz -L \
-    && pecl install pdo_sqlsrv-${PHP_SQLSRV}.tgz \
-    && docker-php-ext-enable pdo_sqlsrv \
-;fi
+# ARG PHP_SQLSRV=false
+# RUN if [ ${PHP_SQLSRV} != false ]; then \
+#     curl -O http://pecl.php.net/get/pdo_sqlsrv-${PHP_SQLSRV}.tgz -L \
+#     && pecl install pdo_sqlsrv-${PHP_SQLSRV}.tgz \
+#     && docker-php-ext-enable pdo_sqlsrv \
+# ;fi
 
 WORKDIR /var/www/html
