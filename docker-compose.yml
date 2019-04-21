@@ -52,14 +52,14 @@ services:
       - ${MYSQL_CONFIG_FILE}:/etc/mysql/my.cnf:ro
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_PASSWORD}"
-  redis:
-    image: redis:latest
-    ports:
-      - 6379:6379
-    volumes:
-      - ${REDIS_DATA_DIR}:/data
-      - ${REDIS_CONF_FILE}:/etc/redis.conf:rw
-    command: redis-server --appendonly yes
+#   redis:
+#     image: redis:latest
+#     ports:
+#       - 6379:6379
+#     volumes:
+#       - ${REDIS_DATA_DIR}:/data
+#       - ${REDIS_CONF_FILE}:/etc/redis.conf:rw
+#     command: redis-server --appendonly yes
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
