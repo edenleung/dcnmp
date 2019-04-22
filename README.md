@@ -48,3 +48,10 @@ mysqli_connect('容器名称', 'root', 1234, 'database')
 
 ### 数据库工具连接
 直接使用当前映射的端口访问内部
+
+## MYSQL linux问题
+注意启动时的提示，如果出现以下提示，你数据库的数据卷应该无法同步到本地
+`Warning: World-writable config file '/etc/mysql/my.cnf' is ignored`
+解决
+在linux服务器，更改my.cnf的权限，再重启
+`chmod 644 my.cnf`
