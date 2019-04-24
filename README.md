@@ -55,3 +55,29 @@ mysqli_connect('容器名称', 'root', 1234, 'database')
 解决
 在linux服务器，更改my.cnf的权限，再重启
 `chmod 644 my.cnf`
+
+## MYSQL 主从复制
+1.配置my.cnf， master与slave只是server-id不同
+```
+[mysqld]
+
+log-bin=mysql-bin
+server-id=1
+```
+2.创建复制账号(Master) 用户名 `bakcup` 密码 `backup`
+```sql
+GRANT REPLICATION SLAVE ON *.* to 'backup'@'%' identified by 'backup';
+```
+3.slave配置链接与启动同步
+```sql
+CHANGE MASTER TO 
+MASTER_HOST='mysql56',
+MASTER_PORT=3306,
+MASTER_USER='backup',
+MASTER_PASSWORD='backup';
+```
+
+```sql
+START SLAVE;
+```
+注意，复制只能从创建数据库开始才跟踪到，不能在Master已有目标数据库，而Slave没有目标数据库，这种情况是不能复制到的。
