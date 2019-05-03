@@ -13,7 +13,7 @@ services:
     restart: always
   php71:
     build:
-      context: .
+      context: ./php
       args:
         PHP_VERSION: ${PHP71_VERSION}
         PHP_SWOOLE: ${PHP71_SWOOLE_VERSION}
@@ -31,7 +31,7 @@ services:
       - default
   #php56:
   #  build:
-  #    context: .
+  #    context: ./php
   #    args:
   #      PHP_VERSION: ${PHP56_VERSION}
   #  volumes:
