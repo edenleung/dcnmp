@@ -1,4 +1,4 @@
-# xiaodi-docker-lnmp
+# DOCKER-LNMP
 
 目前支持以下环境与工具
 * php5.6+
