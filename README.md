@@ -1,5 +1,13 @@
 # xiaodi-docker-lnmp
 
+目前支持以下环境与工具
+* php5.6+
+* redis
+* xdebug
+* mysql
+* composer
+* phpmyadmin
+
 ### Docker [必须安装](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe)
 
 ### Docker 加速
