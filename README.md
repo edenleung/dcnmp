@@ -8,7 +8,7 @@
 * composer
 * phpmyadmin
 
-### Docker [必须安装](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe)
+### Docker [下载](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe)
 
 ### Docker 加速
 在桌面右下角状态栏中右键 docker 图标，修改在 Docker Daemon 标签页中的 json ，把下面的地址:
