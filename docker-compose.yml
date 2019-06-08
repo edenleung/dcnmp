@@ -69,7 +69,13 @@ services:
       PMA_PASSWORD: ${MYSQL_PASSWORD}
       PMA_HOST: mysql56
   # backup:
-  #  build:
-  #    context: 'backup'
-  #  tty: true
-
+  #   build:
+  #     context: 'backup'
+  #     args:
+  #       GITHUB: ${GITHUB}
+  #       QINIU: ${QINIU}
+  #       QINIU_AK: ${QINIU_AK}
+  #       QINIU_SK: ${QINIU_SK}
+  #   volumes:
+  #     - ./backup/config:/home/config
+  #   tty: true
