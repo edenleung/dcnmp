@@ -10,20 +10,21 @@ COPY ./upload /home/upload
 
 VOLUME /home/config /home/backup
 
-# Github Configure
-ARG GITHUB=false
-ENV QINIU_UPLOAD=${QINIU}
-RUN if [ ${GITHUB} != false ]; then \
-    COPY /home/config/github /root/.ssh \
+# GIT Configure
+ARG GIT_BACKUP=false
+ARG GIT_SSH
+ENV GIT_BACKUP=${GIT_BACKUP}
+RUN if [ ${GIT} != false ]; then \
+    COPY /home/config/git /root/.ssh \
     RUN chmod 0600 /root/.ssh/id_rsa.pub && chmod 0600 /root/.ssh/id_rsa && chmod 0600 /root/.ssh/known_hosts \
-    RUN git config --global user.name name \
-    RUN git config --global user.email email \
-    RUN git clone git@github.com:user/project.git /home/backup
+    RUN git config --global user.name robot \
+    RUN git config --global user.email robot \
+    RUN git clone ${GIT_SSH} /home/backup
 ;fi
 
 # 七牛 Configure
-ARG QINIU=false
-ENV QINIU_UPLOAD=${QINIU}
+ARG QINIU_BACKUP=false
+ENV QINIU_BACKUP=${QINIU_BACKUP}
 ARG QINIU_AK
 ARG QINIU_SK
 RUN if [ ${QINIU} != false ]; then \

@@ -72,8 +72,9 @@ services:
   #   build:
   #     context: 'backup'
   #     args:
-  #       GITHUB: ${GITHUB}
-  #       QINIU: ${QINIU}
+  #       GIT_BACKUP: ${GIT_BACKUP}
+  #       GIT_SSH: ${GIT_SSH}
+  #       QINIU_BACKUP: ${QINIU_BACKUP}
   #       QINIU_AK: ${QINIU_AK}
   #       QINIU_SK: ${QINIU_SK}
   #   volumes:

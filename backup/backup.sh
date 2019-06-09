@@ -12,7 +12,13 @@ mysqldump -h mysql56 -u root -p'1234' db1 > /home/backup/db1/$(date +"%Y-%m-%d")
 
 
 #上传到七牛
-if [ $QINIU_UPLOAD ]
+if [ $QINIU_BACKUP ]
 then
     sh /home/upload/qiniu.sh
+fi
+
+#上传到Git
+if [ $GIT_BACKUP ]
+then
+    sh /home/upload/git.sh
 fi
