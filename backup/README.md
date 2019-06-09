@@ -3,6 +3,9 @@
 * github
 * 七牛云
 
+## 计划
+- [ ] 支持备份源数据文件
+
 ### Github
 1. 修改`Dockerfile`, 将`git clone git@github.com:user/project.git`换成你项目的ssh地址
 2. 启动`docker-compose up --build`后，进入容器生成ssh_key信息 `ssh-keygen -t rsa -C "your_email@youremail.com"`
