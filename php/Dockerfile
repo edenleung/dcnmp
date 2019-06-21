@@ -1,6 +1,9 @@
 ARG PHP_VERSION
 FROM php:${PHP_VERSION}-fpm
 
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo 'Asia/Shanghai' > /etc/timezone
+    
 COPY ./sources.list /etc/apt/sources.list.tmp
 RUN mv /etc/apt/sources.list.tmp /etc/apt/sources.list
 RUN apt-get update && apt-get install -y \
