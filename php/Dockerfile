@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 		libmcrypt-dev \
 		libpng-dev \
         unixodbc-dev \
-        gcc g++ make autoconf libc-dev pkg-config libcurl3-dev libwebp-dev libxpm-dev git zip unzip
+        gcc g++ make autoconf libc-dev pkg-config libcurl3-dev libwebp-dev libxpm-dev git zip unzip openssl libssl-dev
 
 RUN docker-php-ext-install bcmath pcntl pdo_mysql zip curl mcrypt
 
@@ -33,7 +33,7 @@ RUN docker-php-ext-install gd
 ARG PHP_SWOOLE=false
 RUN if [ ${PHP_SWOOLE} != false ]; then \
     curl -O http://pecl.php.net/get/swoole-${PHP_SWOOLE}.tgz -L \
-    && pecl install swoole-${PHP_SWOOLE}.tgz \
+    && (tar -zxvf swoole-${PHP_SWOOLE}.tgz && cd swoole-${PHP_SWOOLE} && phpize && ./configure --enable-openssl && make && make install) \
     && docker-php-ext-enable swoole \
 ;fi
 
