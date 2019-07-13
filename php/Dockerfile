@@ -1,33 +1,22 @@
 ARG PHP_VERSION
-FROM php:${PHP_VERSION}-fpm
+FROM php:${PHP_VERSION}-fpm-alpine
 
-RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo 'Asia/Shanghai' > /etc/timezone
-    
-COPY ./sources.list /etc/apt/sources.list.tmp
-RUN mv /etc/apt/sources.list.tmp /etc/apt/sources.list
-RUN apt-get update && apt-get install -y \
-		libfreetype6-dev \
-		libjpeg62-turbo-dev \
-		libmcrypt-dev \
-		libpng-dev \
-        unixodbc-dev \
-        gcc g++ make autoconf libc-dev pkg-config libcurl3-dev libwebp-dev libxpm-dev git zip unzip openssl libssl-dev
+# 阿里云源
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+RUN apk add --no-cache autoconf g++ libtool make curl-dev libxml2-dev linux-headers
 
-RUN docker-php-ext-install bcmath pcntl pdo_mysql zip curl mcrypt
+RUN docker-php-ext-install bcmath pcntl pdo_mysql zip curl
 
-#Composer
+# #Composer
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer self-update --clean-backups \
-    && composer config -g repo.packagist composer https://packagist.laravel-china.org
+    && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
 #GD
-RUN docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir \
-    --with-png-dir --with-zlib-dir --with-xpm-dir --with-freetype-dir \
-    --enable-gd-native-ttf
-
-RUN docker-php-ext-install gd
+ RUN apk add --no-cache freetype-dev libjpeg-turbo-dev libpng-dev \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install ${MC} gd
 
 #Swoole
 ARG PHP_SWOOLE=false
