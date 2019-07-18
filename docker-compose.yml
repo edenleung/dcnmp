@@ -43,20 +43,6 @@ services:
     restart: always
     networks:
       - default
-  #php56:
-  #  build:
-  #    context: ./php
-  #    args:
-  #      PHP_VERSION: ${PHP56_VERSION}
-  #  volumes:
-  #    - ${SOURCE_DIR}:/var/www/html/:rw
-  #    - ${PHP56_PHP_CONFIG_FILE}:/usr/local/etc/php/php.ini:ro
-  #    - ${PHP56_FPM_CONFIG_FILE}:/usr/local/etc/php-fpm.d/www.conf:rw
-  #  cap_add:
-  #    - SYS_PTRACE
-  #  restart: always
-  #  networks:
-  #    - default
   mysql56:
     image: mysql:5.6
     ports:
@@ -66,14 +52,14 @@ services:
       - ${MYSQL_CONFIG_FILE}:/etc/mysql/my.cnf:ro
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_PASSWORD}"
-#   redis:
-#     image: redis:latest
-#     ports:
-#       - 6379:6379
-#     volumes:
-#       - ${REDIS_DATA_DIR}:/data
-#       - ${REDIS_CONF_FILE}:/etc/redis.conf:rw
-#     command: redis-server --appendonly yes
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - ${REDIS_DATA_DIR}:/data
+      - ${REDIS_CONF_FILE}:/etc/redis.conf:rw
+    command: redis-server --appendonly yes
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
@@ -82,15 +68,3 @@ services:
       PMA_USER: "root"
       PMA_PASSWORD: ${MYSQL_PASSWORD}
       PMA_HOST: mysql56
-  # backup:
-  #   build:
-  #     context: 'backup'
-  #     args:
-  #       GIT_BACKUP: ${GIT_BACKUP}
-  #       GIT_SSH: ${GIT_SSH}
-  #       QINIU_BACKUP: ${QINIU_BACKUP}
-  #       QINIU_AK: ${QINIU_AK}
-  #       QINIU_SK: ${QINIU_SK}
-  #   volumes:
-  #     - ./backup/config:/home/config
-  #   tty: true
