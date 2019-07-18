@@ -7,6 +7,7 @@
 * mysql
 * composer
 * phpmyadmin
+* swoole
 * 提供备份数据库到git、七牛云
 
 ### Docker [下载](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe)
