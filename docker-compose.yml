@@ -27,7 +27,7 @@ services:
     restart: always
     networks:
       - default
-  php71:
+  swoole:
     build:
       context: ./php
       args:
