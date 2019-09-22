@@ -1,0 +1,12 @@
+[Unit]
+Description=Docker-Compose
+After=network-online.target firewalld.service containerd.service
+
+[Service]
+Type=simple
+ExecStart=/path/start.sh
+#ExecReload=/bin/kill -HUP $MAINPID
+#ExecStartPre=-/bin/mkdir -p /var/run/vsftpd/empty
+
+[Install]
+WantedBy=multi-user.target
