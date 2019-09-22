@@ -12,6 +12,8 @@ apt update
 
 apt-get install docker-ce docker-ce-cli containerd.io docker-compose -y
 
+systemctl enable docker.service
+
 curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s https://hub-mirror.c.163.com
 
 systemctl restart docker.service
