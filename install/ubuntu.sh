@@ -1,8 +1,8 @@
 #! /bin/bash
 
-sudo apt update & sudo apt install git
+sudo apt update
 
-sudo apt-get install  apt-transport-https ca-certificates  curl  gnupg-agent software-properties-common
+sudo apt-get install git  apt-transport-https ca-certificates  curl  gnupg-agent software-properties-common -y
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
