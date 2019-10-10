@@ -1,13 +1,13 @@
 ARG PHP_VERSION
 FROM php:${PHP_VERSION}-fpm-alpine
 
-# 阿里云源
+#阿里云源
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
-RUN apk add --no-cache autoconf g++ libtool make curl-dev libxml2-dev linux-headers
+RUN apk add --no-cache autoconf g++ libtool make curl-dev libxml2-dev linux-headers libzip-dev
 
-RUN docker-php-ext-install bcmath pcntl pdo_mysql zip curl
+RUN docker-php-ext-install bcmath pcntl pdo_mysql mysqli curl zip
 
-# #Composer
+#Composer
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer self-update --clean-backups \
@@ -26,28 +26,33 @@ RUN if [ ${PHP_SWOOLE} != false ]; then \
     && docker-php-ext-enable swoole \
 ;fi
 
-# XDEBUG
+#XDEBUG
 ARG PHP_XDEBUG=false
 RUN if [ ${PHP_XDEBUG} != false ]; then \
-    curl -O http://pecl.php.net/get/xdebug-${PHP_XDEBUG}.tgz -L \
-    && pecl install xdebug-${PHP_XDEBUG}.tgz \
+    pecl install xdebug \
     && docker-php-ext-enable xdebug \
 ;fi
 
-# REDIS
+#REDIS
 ARG PHP_REDIS=false
 RUN if [ ${PHP_REDIS} != false ]; then \
-    curl -O http://pecl.php.net/get/redis-${PHP_REDIS}.tgz -L \
-    && pecl install redis-${PHP_REDIS}.tgz \
+    pecl install redis \
     && docker-php-ext-enable redis \
 ;fi
 
-# PDO_SQLSRV
-# ARG PHP_SQLSRV=false
-# RUN if [ ${PHP_SQLSRV} != false ]; then \
-#     curl -O http://pecl.php.net/get/pdo_sqlsrv-${PHP_SQLSRV}.tgz -L \
-#     && pecl install pdo_sqlsrv-${PHP_SQLSRV}.tgz \
-#     && docker-php-ext-enable pdo_sqlsrv \
-# ;fi
+#PDO_SQLSRV
+ARG PHP_SQLSRV=false
+RUN if [ ${PHP_SQLSRV} != false ]; then \
+    pecl install pdo_sqlsrv \
+    && docker-php-ext-enable pdo_sqlsrv \
+;fi
+
+# MEMCACHED
+ARG PHP_MEMCACHED=false
+RUN if [ ${PHP_MEMCACHED} != false ]; then \
+    apk add --no-cache libmemcached-dev zlib-dev \
+    && pecl install memcached \
+    && docker-php-ext-enable memcached \
+;fi
 
 WORKDIR /var/www/html
