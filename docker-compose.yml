@@ -68,3 +68,12 @@ services:
       PMA_USER: "root"
       PMA_PASSWORD: ${MYSQL_PASSWORD}
       PMA_HOST: mysql56
+  # 轻量级的Docker环境管理UI （访问9999端口）
+  portainer:
+    image: portainer/portainer
+    ports:
+      - 8888:8000
+      - 9999:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/portainer:/data
