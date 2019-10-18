@@ -8,10 +8,11 @@ RUN apk add --no-cache autoconf g++ libtool make curl-dev libxml2-dev linux-head
 RUN docker-php-ext-install bcmath pcntl pdo_mysql mysqli curl zip
 
 #Composer
-RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer \
-    && composer self-update --clean-backups \
-    && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+RUN set -x; \
+    wget https://mirrors.aliyun.com/composer/composer.phar; \
+    chmod u+x composer.phar; \
+    mv composer.phar /usr/local/bin/composer; \
+    composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
 #GD
  RUN apk add --no-cache freetype-dev libjpeg-turbo-dev libpng-dev \
