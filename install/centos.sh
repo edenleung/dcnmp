@@ -6,6 +6,6 @@ sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/cen
 
 sudo yum makecache fast
 
-sudo yum -y install docker-ce
+sudo yum -y install docker-ce docker-compose
 
 sudo service docker start
