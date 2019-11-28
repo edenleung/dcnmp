@@ -12,28 +12,7 @@ services:
       - ${NGINX_LOG_DIR}:/var/log/nginx/:rw
     restart: always
   php71debug:
-    build:
-      context: ./php
-      args:
-        PHP_VERSION: ${PHP71_VERSION}
-        PHP_REDIS: ${PHP_REDIS_VERSION}
-        PHP_XDEBUG: ${PHP71_XDEBUG_VERSION}
-    volumes:
-      - ${SOURCE_DIR}:/var/www/html/:rw
-      - ${PHP71_PHP_CONFIG_FILE}:/usr/local/etc/php/php.ini:ro
-      - ${PHP71_FPM_CONFIG_FILE}:/usr/local/etc/php-fpm.d/www.conf:rw
-    cap_add:
-      - SYS_PTRACE
-    restart: always
-    networks:
-      - default
-  swoole:
-    build:
-      context: ./php
-      args:
-        PHP_VERSION: ${PHP71_VERSION}
-        PHP_SWOOLE: ${PHP71_SWOOLE_VERSION}
-        PHP_REDIS: ${PHP_REDIS_VERSION}
+    image: xiaodi93/php71debug:debug
     volumes:
       - ${SOURCE_DIR}:/var/www/html/:rw
       - ${PHP71_PHP_CONFIG_FILE}:/usr/local/etc/php/php.ini:ro
