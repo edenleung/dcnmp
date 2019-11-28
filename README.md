@@ -1,4 +1,5 @@
 # DOCKER-LNMP
+[![Build Status](https://travis-ci.com/xiaodit/dcnmp-builder.svg?branch=master)](https://travis-ci.com/xiaodit/dcnmp-builder)
 
 目前支持以下环境与工具
 * php5.6+
