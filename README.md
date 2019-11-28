@@ -48,6 +48,9 @@ location ~ \.php$ {
 }
 ~~~
 
+### 已构建镜像
+https://github.com/xiaodit/dcnmp-builder
+
 ### 数据库连接
 ~~~
 mysqli_connect('容器名称', 'root', 1234, 'database')
