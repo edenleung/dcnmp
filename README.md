@@ -65,33 +65,45 @@ https://github.com/xiaodit/dcnmp-builder
 ~~~
 mysqli_connect('容器名称', 'root', 1234, 'database')
 ~~~
+
 #### 例子
-连接mysql5.6: ```mysqli_connect('mysql56', 'root', 1234, 'database')```
-连接mysql5.7: ```mysqli_connect('mysql57', 'root', 1234, 'database')```
+在代码中连接服务
+mysql 5.6
+```
+mysqli_connect('mysql56', 'root', 1234, 'database')
+```
+
+mysql 5.7
+```
+mysqli_connect('mysql57', 'root', 1234, 'database')
+```
 
 ### 数据库工具连接
 直接使用当前映射的端口访问内部
 
 ## MYSQL linux问题
 注意启动时的提示，如果出现以下提示，你数据库的数据卷应该无法同步到本地
-`Warning: World-writable config file '/etc/mysql/my.cnf' is ignored`
-解决
-在linux服务器，更改my.cnf的权限，再重启
-`chmod 644 my.cnf`
+> `Warning: World-writable config file '/etc/mysql/my.cnf' is ignored`
+
+解决: 在linux服务器，更改my.cnf的权限，再重启
+
+```bash
+$ chmod 644 my.cnf
+```
 
 ## MYSQL 主从复制
-1.配置my.cnf， master与slave只是server-id不同
+1. 配置my.cnf， master与slave只是server-id不同
 ```
 [mysqld]
 
 log-bin=mysql-bin
 server-id=1
 ```
-2.创建复制账号(Master) 用户名 `bakcup` 密码 `backup`
+2. 创建复制账号(Master) 用户名 `bakcup` 密码 `backup`
 ```sql
 GRANT REPLICATION SLAVE ON *.* to 'backup'@'%' identified by 'backup';
 ```
-3.slave配置链接与启动同步
+3. slave配置链接与启动同步
 ```sql
 CHANGE MASTER TO 
 MASTER_HOST='mysql56',
