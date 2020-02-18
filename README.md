@@ -16,8 +16,6 @@
 - [MAC](https://download.docker.com/mac/stable/Docker.dmg)
 
 ### Docker 加速
-在桌面右下角状态栏中右键 docker 图标，修改在 Docker Daemon 标签页中的 json ，把下面的地址:
-"registry-mirrors"
 ~~~
 {
   "registry-mirrors": [
