@@ -12,7 +12,7 @@ services:
       - ${NGINX_LOG_DIR}:/var/log/nginx/:rw
     restart: always
   php71debug:
-    image: xiaodi93/php71debug:debug
+    image: xiaodi93/dcnmp-php71:debug
     volumes:
       - ${SOURCE_DIR}:/var/www/html/:rw
       - ${PHP71_PHP_CONFIG_FILE}:/usr/local/etc/php/php.ini:ro
