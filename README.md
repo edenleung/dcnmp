@@ -19,10 +19,12 @@
 ~~~
 {
   "registry-mirrors": [
+    "http://dockerhub.azk8s.cn",
+    "https://mirror.ccs.tencentyun.com",
     "http://f1361db2.m.daocloud.io",
-    "http://registry.docker-cn.com",
-    "http://docker.mirrors.ustc.edu.cn",
-    "http://hub-mirror.c.163.com"
+    "http://hub-mirror.c.163.com",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://2h3po24q.mirror.aliyuncs.com"
   ]
 }
 ~~~
