@@ -116,3 +116,9 @@ MASTER_PASSWORD='backup';
 START SLAVE;
 ```
 注意，复制只能从创建数据库开始才跟踪到，不能在Master已有目标数据库，而Slave没有目标数据库，这种情况是不能复制到的。
+
+## Mac
+解决访问速度慢的问题
+```
+$ docker-sync start
+```
