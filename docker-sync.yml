@@ -1,0 +1,5 @@
+version: '2'
+syncs:
+  mac_sync:
+    sync_strategy: 'unison'
+    src: './workspace'
