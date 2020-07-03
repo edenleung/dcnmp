@@ -22,8 +22,8 @@ services:
     restart: always
     networks:
       - default
-  mysql56:
-    image: mysql:5.6
+  mysql:
+    image: mysql:5.7
     ports:
       - ${MYSQL56_HOST_PORT}:3306
     volumes:
